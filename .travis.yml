@@ -9,8 +9,7 @@ env: # set up env var to be used in setting image versions
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d # pull the encrypted service-account.json file from Travis CI and unencrypt it for later authentication to GCP
-  - curl https://sdk.cloud.google.com > install.sh # download Google SDK and install it locally
-  - bash install.sh --disable-prompts
+  - curl https://sdk.cloud.google.com | bash -s -- --disable-prompts > /dev/null; # download Google SDK and install it locally
   - source $HOME/google-cloud-sdk/path.bash.inc # apply the additional configuration
   - gcloud components update kubectl # make GCP CLI install kubectl command
   - gcloud auth activate-service-account --key-file service-account.json # activate a service account and provide the credential
