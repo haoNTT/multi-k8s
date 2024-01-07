@@ -1,4 +1,5 @@
 sudo: required
+dist: focal # specify the Ubuntu distribution
 services:
   - docker
 
@@ -8,8 +9,8 @@ env: # set up env var to be used in setting image versions
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1 # this will make sure google cloud does not show any prompts
 
 before_install:
-  - CLOUDSDK_PYTHON=python3.8 # set python version to be 3.8 for successful installation of Google SDK
   - openssl aes-256-cbc -K $encrypted_9f3b5599b056_key -iv $encrypted_9f3b5599b056_iv -in service-account.json.enc -out service-account.json -d # pull the encrypted service-account.json file from Travis CI and unencrypt it for later authentication to GCP
+  - CLOUDSDK_PYTHON=python3.8 # set python version to be 3.8 for successful installation of Google SDK
   - curl https://sdk.cloud.google.com | bash > /dev/null; # download Google SDK and install it locally
   - source $HOME/google-cloud-sdk/path.bash.inc # apply the additional configuration
   - gcloud components update kubectl # make GCP CLI install kubectl command
