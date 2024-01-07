@@ -14,7 +14,7 @@ before_install:
   - curl https://sdk.cloud.google.com | bash > /dev/null; # download Google SDK and install it locally
   - source $HOME/google-cloud-sdk/path.bash.inc # apply the additional configuration
   - gcloud components update kubectl # make GCP CLI install kubectl command
-  - gcloud auth activate-service-account --key-file service-account.json # activate a service account and provide the credential
+  - gcloud auth activate-service-account --key-file=service-account.json # activate a service account and provide the credential
   - gcloud config set project multi-k8s-409601 # switch to the current GCP project
   - gcloud config set compute/zone us-central1-c # switch to the correct compute zone
   - gcloud container clusters get-credentials multi-cluster # specify the container to issue the command
