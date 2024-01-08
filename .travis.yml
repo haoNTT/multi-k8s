@@ -5,7 +5,7 @@ services:
 
 env: # set up env var to be used in setting image versions
   global:
-    - GIT_SHA=$(git rev-parse HEAD)
+    - GIT_SHA=$(git rev-parse HEAD) # add env var into Travis for fetching the current 
     - CLOUDSDK_CORE_DISABLE_PROMPTS=1 # this will make sure google cloud does not show any prompts
 
 before_install:
