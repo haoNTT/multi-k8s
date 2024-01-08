@@ -19,8 +19,6 @@ spec:
       containers:
         - name: postgres
           image: postgres:latest
-          environment:
-            - POSTGRES_PASSWORD=postgres_password
           ports:
             - containerPort: 5432
           volumeMounts: # This is where we tell the container to store its data
@@ -28,7 +26,7 @@ spec:
               mountPath: /var/lib/postgresql/data # Designate where inside the container this storage should be made available. Anything stored in this path will be actually stored in the volume.
               subPath: postgres # Allow the mount to be further on a subpath
           env: # This is to let the postgres container know what is the correct secret to get access to it. You can consider this module as to set up a password for the container
-            - name: PASSWORD # The env var name to set up
+            - name: POSTGRES_PASSWORD # The env var name to set up
               valueFrom:
                 secretKeyRef:
                   name: pgpassword
