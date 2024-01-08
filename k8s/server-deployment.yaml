@@ -30,7 +30,7 @@ spec:
               value: '5432'
             - name: PGDATABASE
               value: postgres # Not ideal to use the default name, just for a demo purpose
-            - name: PGPASSWORD
+            - name: POSTGRES_PASSWORD
               valueFrom: # This is the place where we wire up the secret environment variable
                 secretKeyRef:
                   name: pgpassword # This is the name you specified when creating the secret using kubectl CLI
